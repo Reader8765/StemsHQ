@@ -7,7 +7,8 @@ app.use(express.static("static"));
 
 app.get("*", (req, res) => {
 	res.status(404);
-	res.send(`
+	res.send(
+		`
 	<p>
 		404: this page could not be found :(
 	</p>
@@ -16,7 +17,8 @@ app.get("*", (req, res) => {
 		location.assign("/");
 		}, 1000);
 	</script>
-	`);
+	`
+	);
 });
 
 http.listen(3000, () => {
@@ -38,12 +40,13 @@ function upplay(np) {
 }
 
 var animals = require('animals');
+
 function anim() {
 	const d = animals();
 	return "Anonymous " + d[0].toUpperCase() + d.slice(1);
 }
 
-io.on('connection', function (socket) {
+io.on('connection', function(socket) {
 	socket.on('recieveName', data => {
 		upplay(players.concat({
 			id: id(),
