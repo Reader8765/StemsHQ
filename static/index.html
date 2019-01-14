@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
-  <head>
-	  <script src="/socket.io/socket.io.js"></script>
-	  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  </head>
+<head>
+	<script src="/socket.io/socket.io.js">
 
-  <div id="signIn" style="word-wrap:break-word;">
-	  <div>
-		  <textarea id="name" maxlength="12"></textarea>
+	</script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<div id="signIn" style="word-wrap:break-word;">
+	<div>
+		<textarea id="name" maxlength="12"></textarea>
 		  <button id="nameSubmit">Join</button>
 	  </div>
   </div>
@@ -20,21 +22,25 @@
 			  e.preventDefault();
 	  }
 
-    try {
-      var socket = io();
-      
-      const pl = document.getElementById("players");
-      socket.on("pldata", data => {
-        pl.innerText = data.map(d=>d.name).join(", ");
-      })
-      
-      document.getElementById("nameSubmit").onclick = event => {
-        var name = document.getElementById("name").value;
-        socket.emit("recieveName", name);
-      };
-    } catch (err) {
-      alert("Error: " + err)
-    }
+    var socket = io();
+
+    document.getElementById("nameSubmit").onclick = event => {
+      var name = document.getElementById("name").value;
+      socket.emit("recieveName", name);
+      socket.on("redirect", data=>{
+        switch (data) {
+          case "admin":
+            window.location.replace('admin/index.html');
+            break;
+          case "user":
+            window.location.replace('user/index.html');
+            break;
+          case "active":
+            window.location.replace('error/active.html');
+            break;
+        }
+      });
+    };
   </script>
 
   <style>
