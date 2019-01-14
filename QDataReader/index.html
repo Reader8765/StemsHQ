@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<script src="/socket.io/socket.io.js">
+
+	</script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<div id="signIn" style="word-wrap:break-word;">
+	<div>
+		<textarea id="name" maxlength="12"></textarea>
+		  <button id="nameSubmit">Join</button>
+	  </div>
+  </div>
+
+
+  <script>
+	  document.getElementById("name").onkeydown = e => {
+		  if (e.key.length>1 && e.key != "Backspace")
+			  e.preventDefault();
+	  }
+
+    var socket = io();
+
+    document.getElementById("nameSubmit").onclick = event => {
+      var name = document.getElementById("name").value;
+      socket.emit("recieveName", name);
+      socket.on("redirect", data=>{
+        switch (data) {
+          case "admin":
+            window.location.replace('admin/index.html');
+            break;
+          case "user":
+            window.location.replace('user/index.html');
+            break;
+          case "active":
+            window.location.replace('error/active.html');
+            break;
+        }
+      });
+    };
+  </script>
+
+  <style>
+    @keyframes background-change {
+      0% {background-color: blue;}
+      25% {background-color: purple;}
+      50% {background-color: red;}
+      75% {background-color: purple;}
+      100% {background-color: blue;}
+    }
+    
+    body {
+      animation-name: background-change;
+      animation-duration: 10s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    
+    #signIn {
+      display: flex;
+      width: 100%;
+      height: 90vh;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #signIn>div {
+      text-align: center;
+      width: 390px;
+    }
+    
+    #signIn>div>#name {
+      border-radius: 5px;
+      resize: none;
+      height: 58px;
+      width: 380px;
+      text-align: center;
+      font-size: 48px;
+      font-family: Montserrat, sans-serif;
+      font-weight: bold;
+    }
+    
+    #signIn>div>#nameSubmit {
+      border-radius: 5px;
+      resize: none;
+      height: 32px;
+      font-size: 24px;
+      font-family: Montserrat, sans-serif;
+      background-color: lightgray;
+      border: none;
+    }
+  </style>
+</html>
