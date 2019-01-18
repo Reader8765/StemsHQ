@@ -1,0 +1,1 @@
+{"tri":["under","over","beyond","three"],"hypo":["under","over","beyond","two"],"super":["under","over","beyond","one"]}

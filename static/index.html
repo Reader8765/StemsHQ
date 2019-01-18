@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
+<<<<<<< HEAD
   <head>
 	  <script src="/socket.io/socket.io.js"></script>
 	  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -9,6 +10,18 @@
   <div id="signIn" style="word-wrap:break-word;">
 	  <div>
 		  <textarea id="name" maxlength="12"></textarea>
+=======
+<head>
+	<script src="/socket.io/socket.io.js">
+
+	</script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<div id="signIn" style="word-wrap:break-word;">
+	<div>
+		<textarea id="name" maxlength="12"></textarea>
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
 		  <button id="nameSubmit">Join</button>
 	  </div>
   </div>
@@ -25,11 +38,27 @@
     document.getElementById("nameSubmit").onclick = event => {
       var name = document.getElementById("name").value;
       socket.emit("recieveName", name);
+<<<<<<< HEAD
       if (name == "theadminssay") {
         window.location.replace('user/index.html');
       } else {
         window.location.replace('user/index.html');
       }
+=======
+      socket.on("redirect", data=>{
+        switch (data) {
+          case "admin":
+            window.location.replace('admin/index.html');
+            break;
+          case "user":
+            window.location.replace('user/index.html');
+            break;
+          case "active":
+            window.location.replace('error/active.html');
+            break;
+        }
+      });
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     };
   </script>
 
@@ -41,14 +70,22 @@
       75% {background-color: purple;}
       100% {background-color: blue;}
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     body {
       animation-name: background-change;
       animation-duration: 10s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     #signIn {
       display: flex;
       width: 100%;
@@ -56,12 +93,20 @@
       justify-content: center;
       align-items: center;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     #signIn>div {
       text-align: center;
       width: 390px;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     #signIn>div>#name {
       border-radius: 5px;
       resize: none;
@@ -72,7 +117,11 @@
       font-family: Montserrat, sans-serif;
       font-weight: bold;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 875dbffa3998c929b50dd50b0213e819345ac874
     #signIn>div>#nameSubmit {
       border-radius: 5px;
       resize: none;
